@@ -14,12 +14,23 @@ namespace DzForm2
         {
             if (e.Button == MouseButtons.Left)
             {
+                List<Rectangle> rectangles =  new List<Rectangle>();
+                rectangles.Add(_rectangle);
+
+                rectangles.FirstOrDefault(rect => rect.Contains(e.Location));
+
+                var rect = _rectangle.Contains(e.Location);
+
+
+
+
+
                 string message = default;
-                if (_rectangle.Contains(e.Location))
+                if (rect)
                 {
                     message = "Точка знаходиться всередині прямокутника.";
                 }
-                else if (_rectangle.IntersectsWith(new Rectangle(e.X, e.Y, 2, 2)))
+                else if (rectangles.FirstOrDefault(rect => rect.IntersectsWith(new Rectangle(e.X, e.Y, 2, 2)))
                 {
                     message = "Точка знаходиться на межі прямокутника.";
                 }
